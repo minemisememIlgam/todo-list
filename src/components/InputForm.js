@@ -7,8 +7,13 @@ function InputForm() {
     inputForTodo,
     setArrayForTodo,
     arrayForTodo,
+    dateForTodo,
+    setDateForTodo,
   } = useContext(Context);
 
+  const changeDate = (event) => {
+    setDateForTodo(event.target.value);
+  };
   const changeText = (event) => {
     event.preventDefault();
     setInputForTodo(event.target.value);
@@ -24,6 +29,14 @@ function InputForm() {
     <>
       <form>
         <input onChange={changeText} type="text" placeholder="Add new todo" />
+        <button onClick={fillingArray} type="button">
+          Add
+        </button>
+        <input
+          onChange={changeDate}
+          type="date"
+          placeholder="До когда вам это нужно"
+        />
         <button onClick={fillingArray} type="button">
           Add
         </button>
