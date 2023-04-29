@@ -2,10 +2,15 @@ import { useContext } from "react";
 import Context from "./Context";
 import { useReducer } from "react";
 function Todos() {
-  const { inputForTodo, arrayForTodo, setArrayForTodo } = useContext(Context);
-  console.log(
-    arrayForTodo
-  ); /*Эта строка кода определяет, что происходит при диспетчеризации действия типа DELETE в редьюсере.
+  const { inputForTodo, arrayForTodo, setArrayForTodo, dateForTodo } =
+    useContext(Context);
+  console.log(arrayForTodo);
+  const now = Date.now(); // получаем текущую дату и время в виде количества миллисекунд
+
+  // можно использовать объект Date для форматирования даты и времени по своему усмотрению
+  const date = new Date(now);
+  const formattedDate =
+    date.toLocaleDateString(); /*Эта строка кода определяет, что происходит при диспетчеризации действия типа DELETE в редьюсере.
 
       ...state создает новый объект, содержащий все свойства и значения из текущего состояния state. Таким образом, мы создаем новый объект, который является копией текущего состояния.
       
@@ -72,7 +77,11 @@ function Todos() {
       {arrayForTodo.map((todos, index) => (
         <ul className="todo-list" key={index}>
           <li>
-            <span>{todos}</span>
+            <span>
+              {todos}
+              <p>Дата создания: {formattedDate}</p>
+              <p>Выполнить до: {dateForTodo} </p>
+            </span>
             <div>
               <button onClick={() => editInArray(index, inputForTodo)}>
                 Edit
